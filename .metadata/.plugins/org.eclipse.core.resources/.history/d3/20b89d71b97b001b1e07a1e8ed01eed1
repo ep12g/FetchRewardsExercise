@@ -1,0 +1,46 @@
+package test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import pageObjects.Fetch_Page;
+
+public class FetchChallenge {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Elie\\Desktop\\Fetch Rewards Coding Exercise\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+        String baseUrl = "http://ec2-54-208-152-154.compute-1.amazonaws.com/";
+        //String expectedTitle = "Welcome: Mercury Tours";
+        //String actualTitle = "";
+        
+        driver.get(baseUrl);
+        
+        Fetch_Page fetchpage = new Fetch_Page(driver);
+        
+        fetchpage.setBoxL0("1");
+        
+//        driver.findElement(By.xpath("//*[@id='left_0']")).sendKeys("0");
+//        driver.findElement(By.xpath("//*[@id='left_1']")).sendKeys("1");
+//        driver.findElement(By.xpath("//*[@id='left_2']")).sendKeys("2");
+//        driver.findElement(By.xpath("//*[@id='left_3']")).sendKeys("3");
+//        
+//        driver.findElement(By.xpath("//*[@id='right_0']")).sendKeys("4");
+//        driver.findElement(By.xpath("//*[@id='right_1']")).sendKeys("5");
+//        driver.findElement(By.xpath("//*[@id='right_2']")).sendKeys("6");
+//        driver.findElement(By.xpath("//*[@id='right_3']")).sendKeys("7");
+//        
+//        driver.findElement(By.xpath("//*[text()='Weigh']")).click();
+//        driver.findElement(By.xpath("//*[text()='Reset']")).click();
+//        
+//        if (driver.findElement(By.xpath("//*[text()='[0,1,2,3] < [4,5,6,7]']")).isDisplayed() || driver.findElement(By.xpath("//*[text()='[0,1,2,3] > [4,5,6,7]']")).isDisplayed()) {
+//        	//continue to round two
+//        }
+//        else {
+//        	//the number is 9
+//        }
+	}
+}

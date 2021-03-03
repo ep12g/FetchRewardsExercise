@@ -1,0 +1,19 @@
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class Fetch_Page {
+	private WebDriver driver;
+	
+	@FindBy(id="developer_email")
+	WebElement developer_email;
+	
+	public void setDeveloper_email(String email){
+		developer_email.clear();
+		developer_email.sendKeys(email);
+	   }
+
+}

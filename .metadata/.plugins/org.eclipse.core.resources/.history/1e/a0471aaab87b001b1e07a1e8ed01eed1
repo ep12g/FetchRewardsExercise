@@ -1,0 +1,23 @@
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class Fetch_Page {
+	private WebDriver driver;
+	
+	@FindBy(id="left_0")
+	WebElement left_0;
+	
+	public Fetch_Page(WebDriver driver) {
+		this.driver=driver;
+	}
+
+	public void setBoxL0(String entry){
+		left_0.sendKeys(entry);
+	   }
+
+}

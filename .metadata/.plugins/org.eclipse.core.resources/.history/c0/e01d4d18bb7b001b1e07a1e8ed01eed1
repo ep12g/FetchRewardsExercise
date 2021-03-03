@@ -1,0 +1,45 @@
+package test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import pageObjects.Fetch_Page;
+
+public class FetchChallenge {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Elie\\Desktop\\Fetch Rewards Coding Exercise\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+        Fetch_Page fetchpage = new Fetch_Page(driver);
+		
+        String baseUrl = "http://ec2-54-208-152-154.compute-1.amazonaws.com/";
+        driver.get(baseUrl);
+        
+
+        
+        fetchpage.setBoxL0("0");
+        fetchpage.setBoxL1("1");
+        fetchpage.setBoxL2("2");
+        fetchpage.setBoxL3("3");
+        fetchpage.setBoxR0("4");
+        fetchpage.setBoxR1("5");
+        fetchpage.setBoxR2("6");
+        fetchpage.setBoxR3("7");
+
+        fetchpage.clickWeigh();
+        
+//        fetchpage.clickReset();
+          
+//        driver.findElement(By.xpath("//*[text()='Weigh']")).click();
+//        driver.findElement(By.xpath("//*[text()='Reset']")).click();
+//        
+//        if (driver.findElement(By.xpath("//*[text()='[0,1,2,3] < [4,5,6,7]']")).isDisplayed() || driver.findElement(By.xpath("//*[text()='[0,1,2,3] > [4,5,6,7]']")).isDisplayed()) {
+//        	//continue to round two
+//        }
+//        else {
+//        	//the number is 9
+//        }
+	}
+}

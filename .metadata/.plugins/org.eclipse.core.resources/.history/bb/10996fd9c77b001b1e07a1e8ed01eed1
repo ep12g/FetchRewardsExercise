@@ -1,0 +1,132 @@
+package test;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import pageObjects.Fetch_Page;
+
+public class FetchChallenge {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Elie\\Desktop\\Fetch Rewards Coding Exercise\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+        Fetch_Page fetchpage = new Fetch_Page(driver);
+		
+        String baseUrl = "http://ec2-54-208-152-154.compute-1.amazonaws.com/";
+        driver.get(baseUrl);
+        
+        runFirstWeighing(fetchpage);
+        
+        if (String.valueOf(fetchpage.getFirstWeighing().charAt(10)).equals(">") || String.valueOf(fetchpage.getFirstWeighing().charAt(10)).equals("<")) {
+        	runSecondWeighing(fetchpage);
+        }else {
+    	   System.out.println("The fake gold is number 8");
+    	   fetchpage.clickGoldEight();
+       }
+	}
+
+	private static void runFirstWeighing(Fetch_Page fetchpage) {
+		fetchpage.setBoxL0("0");
+        fetchpage.setBoxL1("1");
+        fetchpage.setBoxL2("2");
+        fetchpage.setBoxL3("3");
+        fetchpage.setBoxR0("4");
+        fetchpage.setBoxR1("5");
+        fetchpage.setBoxR2("6");
+        fetchpage.setBoxR3("7");
+
+        weighAndReset(fetchpage);
+	}
+
+	private static void runSecondWeighing(Fetch_Page fetchpage) {
+		if (String.valueOf(fetchpage.getFirstWeighing().charAt(10)).equals("<")) {
+			fetchpage.setBoxL0("0");
+			fetchpage.setBoxL1("1");
+			fetchpage.setBoxR0("2");
+			fetchpage.setBoxR1("3");
+			
+			weighAndReset(fetchpage);
+			
+			runThirdWeighingOptionOne(fetchpage);
+			
+		}else {
+			fetchpage.setBoxL0("4");
+		    fetchpage.setBoxL1("5");
+		    fetchpage.setBoxR0("6");
+		    fetchpage.setBoxR1("7");
+		    
+		    weighAndReset(fetchpage);
+		    
+			runThirdWeighingOptionTwo(fetchpage);
+		}
+	}
+
+	private static void runThirdWeighingOptionOne(Fetch_Page fetchpage) {
+		if (String.valueOf(fetchpage.getSecondWeighing().charAt(6)).equals("<")) {
+			fetchpage.setBoxL0("0");
+			fetchpage.setBoxR0("1");
+
+			weighAndReset(fetchpage);
+			
+			if (String.valueOf(fetchpage.getThirdWeighing().charAt(4)).equals("<")) {
+				System.out.println("The fake gold is number 0");
+				fetchpage.clickGoldZero();
+			}else {
+				System.out.println("The fake gold is number 1");
+				fetchpage.clickGoldOne();
+			}
+
+		}
+		else {
+			fetchpage.setBoxL0("2");
+			fetchpage.setBoxR0("3");
+			
+			weighAndReset(fetchpage);
+			
+			if (String.valueOf(fetchpage.getThirdWeighing().charAt(4)).equals("<")) {
+				System.out.println("The fake gold is number 2");
+				fetchpage.clickGoldTwo();
+			}else {
+				System.out.println("The fake gold is number 3");
+				fetchpage.clickGoldThree();
+			}
+		}
+	}
+
+	private static void runThirdWeighingOptionTwo(Fetch_Page fetchpage) {
+		if (String.valueOf(fetchpage.getSecondWeighing().charAt(6)).equals("<")) {
+			fetchpage.setBoxL0("4");
+			fetchpage.setBoxR0("5");
+			
+			weighAndReset(fetchpage);
+			
+			if (String.valueOf(fetchpage.getThirdWeighing().charAt(4)).equals("<")) {
+				System.out.println("The fake gold is number 4");
+				fetchpage.clickGoldFour();
+			}else {
+				System.out.println("The fake gold is number 5");
+				fetchpage.clickGoldFive();
+			}
+		} else {
+			fetchpage.setBoxL0("6");
+			fetchpage.setBoxR0("7");
+			
+			weighAndReset(fetchpage);
+			
+			if (String.valueOf(fetchpage.getThirdWeighing().charAt(4)).equals("<")) {
+				System.out.println("The fake gold is number 6");
+				fetchpage.clickGoldSix();
+			}else {
+				System.out.println("The fake gold is number 7");
+				fetchpage.clickGoldSeven();
+			}
+		}
+	}
+
+	private static void weighAndReset(Fetch_Page fetchpage) {
+		fetchpage.clickWeigh();
+        fetchpage.clickReset();
+	}
+}
